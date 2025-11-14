@@ -14,7 +14,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import aiAnalystBg from "@/assets/section2.jpeg";
 import sec2Bg from "@/assets/sec2bg.png";
-import phishingBg from "@/assets/phishing-triage-bg.jpg";
+import phishingBg from "@/assets/secc.jpg";
 import logoImg from "@/assets/logo.jpeg";
 import cortexImg from "@/assets/crousel/cortex.png";
 import openaiImg from "@/assets/crousel/openai.png";
@@ -23,6 +23,8 @@ import rapidImg from "@/assets/crousel/raipd.jpg";
 import splunkImg from "@/assets/crousel/splunk.png";
 import virustotalImg from "@/assets/crousel/virustotal.jpg";
 import { MessageSquare, Target } from "lucide-react";
+import { motion } from "framer-motion";
+
 
 const queryClient = new QueryClient();
 
@@ -427,72 +429,101 @@ const features = [
   },
 ];
 
+
+
 const FlagshipSection = () => {
   return (
-    <section className="relative py-24 px-4 bg-background">
+    <section className="relative py-24 px-4 bg-background overflow-hidden">
+
+      {/* 🔮 Soft Purple Glow Behind Section */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(121,40,202,0.25),transparent_70%)] pointer-events-none"></div>
+
       <div className="relative z-10 container mx-auto max-w-7xl">
-        {/* Centered Title */}
-        <AnimatedText>
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              Our Flagship: The{" "}
-              <span className="bg-gradient-to-r from-glow-purple to-glow-blue bg-clip-text text-transparent">
-                Phishing Triage Playbook
-              </span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Our most in-demand service. We transform your phishing triage from a 20-minute manual 
-              analyst task into a 2-minute automated workflow.
-            </p>
-          </div>
-        </AnimatedText>
+        
+        {/* 🔥 Title With Smooth Fade-in */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
+            Our Flagship:{" "}
+            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
+              Phishing Triage Playbook
+            </span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            We turn a 20-minute manual phishing triage into a fully automated 2-minute workflow.
+          </p>
+        </motion.div>
 
+        {/* 🔥 Content Grid */}
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Image */}
-          <AnimatedText delay={200}>
-            <div className="relative h-[500px] rounded-lg overflow-hidden shadow-2xl">
-              <img 
-                src="http://googleusercontent.com/image_generation_content/0" 
-                alt="Phishing Triage Visualization" 
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  // Fallback to local image if URL fails
-                  e.target.src = phishingBg;
-                }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent" />
-            </div>
-          </AnimatedText>
 
-          {/* Right Side - Text Content */}
+          {/* 🟣 Left — Image With Neon Glow Border */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }} 
+            whileInView={{ opacity: 1, scale: 1 }} 
+            transition={{ duration: 0.6 }}
+            className="relative group"
+          >
+            <div className="absolute inset-0 rounded-xl blur-xl opacity-80 bg-gradient-to-r from-purple-600 to-blue-600 group-hover:scale-105 transition-transform duration-500"></div>
+
+            <div className="relative rounded-xl overflow-hidden shadow-2xl border border-white/10">
+              <img
+                 src={phishingBg}
+                alt="Phishing Triage Visualization"
+                className="w-full h-[500px] object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            </div>
+          </motion.div>
+
+          {/* 🔵 Right — Features */}
           <div className="space-y-6">
             {features.map((feature, index) => (
-              <AnimatedText key={index} delay={300 + (index * 100)}>
-                <Card 
-                  className="bg-card/50 backdrop-blur-sm border border-border p-6 hover:border-primary/50 hover:shadow-glow-purple transition-all duration-300 group"
-                >
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.15, duration: 0.5 }}
+              >
+                <Card className="bg-black/30 backdrop-blur-md border border-white/10 p-6 rounded-2xl 
+                hover:border-purple-500/40 hover:shadow-[0_0_20px_rgba(155,70,255,0.35)]
+                hover:-translate-y-1 transition-all duration-300">
+                  
                   <div className="flex items-start gap-4">
-                    <div className="bg-gradient-primary p-3 rounded-lg shadow-glow-purple group-hover:shadow-glow-blue transition-all duration-300">
-                      <feature.icon className="w-6 h-6 text-foreground" />
+                    
+                    {/* Icon Box */}
+                    <div className="p-3 rounded-xl bg-gradient-to-br from-purple-600 to-blue-600 shadow-lg">
+                      <feature.icon className="w-6 h-6 text-white" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-foreground mb-2">
+
+                    {/* Text */}
+                    <div>
+                      <h3 className="text-xl font-semibold text-foreground mb-1">
                         {feature.title}
                       </h3>
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-muted-foreground">
                         {feature.description}
                       </p>
                     </div>
+
                   </div>
                 </Card>
-              </AnimatedText>
+              </motion.div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
   );
 };
+
+
+
 
 // Trust Section Component
 const technologies = [
